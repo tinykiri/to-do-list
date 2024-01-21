@@ -1,0 +1,96 @@
+html {
+  font-size: 20px;
+  font-family: monospace;
+}
+
+body {
+  background-image: url('https://img.freepik.com/premium-vector/soft-pink-watercolour-splash-white-background-vector-illustration_3590-392.jpg?w=2000');
+  background-size: 1500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#task_area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#tasks {
+  width: 200px;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  width: 300px;
+  height: 20px;
+  padding: 12px 18px;
+  border: 1px solid grey;
+  border-radius: 8px;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transform: scale(1.6);
+  accent-color: green;
+  cursor: pointer;
+}
+
+.new_task_area {
+  width: 340px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#task_input {
+  width: 230px;
+  height: 24px;
+  border: 1px solid grey;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+#task_input:focus::placeholder {
+  color: transparent;
+}
+
+#btn {
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  background: #eeeeee;
+}
+
+#btn:hover { 
+  background: #dddddd;
+  cursor: pointer;
+}
+
+#btn:active {
+  background: #c4ebd4;
+  transform: scale(0.9);
+}
+
+#hidden {
+  font-size: 16px;
+  padding: 0;
+  color: red;
+  text-align: right;
+  visibility: hidden;
+}
