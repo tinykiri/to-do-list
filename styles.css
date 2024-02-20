@@ -13,6 +13,13 @@ body {
   text-align: center;
 }
 
+form {
+  width: 350px;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: -6px 6px 20px #d3d3d3;
+}
+
 #task_area {
   display: flex;
   flex-direction: column;
@@ -47,16 +54,16 @@ body {
 }
 
 .new_task_area {
-  width: 340px;
+  width: 350px;
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
 #task_input {
-  width: 230px;
+  width: 220px;
   height: 24px;
   border: 1px solid grey;
   font-size: 16px;
@@ -77,7 +84,7 @@ body {
   background: #eeeeee;
 }
 
-#btn:hover { 
+#btn:hover {
   background: #dddddd;
   cursor: pointer;
 }
@@ -87,11 +94,33 @@ body {
   transform: scale(0.9);
 }
 
-#hidden {
-  font-size: 16px;
-  padding: 0;
-  color: red;
-  text-align: right;
-  visibility: hidden;
+#clearAll {
+  margin-top: 20px;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  background: #eeeeee;
 }
 
+#clearAll:hover {
+  background: #dddddd;
+  cursor: pointer;
+}
+
+#clearAll:active {
+  background: #c4ebd4;
+  transform: scale(0.9);
+}
+
+#hidden {
+  font-size: 14px;
+  padding: 0;
+  color: red;
+  text-align: center;
+  visibility: hidden;
+  margin: 0;
+  margin-top: 12px;
+}

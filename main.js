@@ -1,25 +1,13 @@
 const taskInput = document.getElementById('task_input');
-const addTaskBtn = document.querySelector('#btn');
-
-let list = [
-  {
-    id: 0,
-    title: 'Go to the gym',
-    isChecked: false,
-  },
-  {
-    id: 1,
-    title: ' Read',
-    isChecked: false,
-  },
-  {
-    id: 2,
-    title: ' Code',
-    isChecked: false,
-  }
-];
-
+// const addTaskBtn = document.querySelector('#btn'); 
 const taskArea = document.getElementById('task_area');
+const clearAll = document.getElementById('clearAll');
+
+let list = JSON.parse(localStorage.getItem('tasks')) || [];
+
+function saveTasks() {
+  localStorage.setItem('tasks', JSON.stringify(list));
+};
 
 function createTasksHTML() {
   taskArea.innerHTML = '';
@@ -58,7 +46,6 @@ function createTasksHTML() {
       const checkboxId = checkBoxes[i].id;
       const task = list.filter(item => item.id === parseInt(checkboxId))[0];
 
-
       if (checkBoxes[i].checked) {
         task.isChecked = true;
         taskList[i].style.backgroundColor = '#c4ebd4';
@@ -66,6 +53,7 @@ function createTasksHTML() {
         task.isChecked = false;
         taskList[i].style.backgroundColor = 'unset';
       }
+      saveTasks();
     })
   };
 
@@ -75,7 +63,7 @@ function createTasksHTML() {
     let inBetween = false;
     if (e.shiftKey && this.checked) {
       checkBoxes.forEach(checkbox => {
-        const task = list.filter(item => item.id === parseInt(checkbox.id))[0];
+        const task = list.filter(item => item.id === parseInt(checkbox.id));
         if (checkbox === this || checkbox === lastChecked) {
           inBetween = !inBetween;
           taskList.forEach(taskL => taskL.style.backgroundColor = '#c4ebd4');
@@ -84,7 +72,8 @@ function createTasksHTML() {
           checkbox.checked = true;
           task.isChecked = true;
         }
-      })
+      });
+      saveTasks();
     }
     lastChecked = this;
   }
@@ -93,21 +82,46 @@ function createTasksHTML() {
 
 createTasksHTML();
 
-addTaskBtn.addEventListener('click', () => {
+// addTaskBtn.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   const newTask = taskInput.value;
+//   if (newTask === '') {
+//     document.getElementById('hidden').style.visibility = 'visible';
+//     taskInput.style.border = '2px solid #f7b4bb';
+//     return;
+//   } else {
+//     const newTaskObj = { title: newTask, id: list.length, isDone: false };
+//     list.push(newTaskObj);
+//     createTasksHTML();
+//     saveTasks();
+//     taskInput.value = '';
+//   }
+// }); 
+
+
+taskInput.addEventListener('click', () => {
+  taskInput.style.border = '';
+  document.getElementById('hidden').style.visibility = 'hidden';
+});
+
+window.addEventListener('submit', (e) => {
+  e.preventDefault();
   const newTask = taskInput.value;
   if (newTask === '') {
     document.getElementById('hidden').style.visibility = 'visible';
     taskInput.style.border = '2px solid #f7b4bb';
     return;
   } else {
-    const newTaskObj = { title: newTask, id: list.length, isChecked: false };
+    const newTaskObj = { title: newTask, id: list.length, isDone: false };
     list.push(newTaskObj);
     createTasksHTML();
+    saveTasks();
     taskInput.value = '';
   }
 });
 
-taskInput.addEventListener('click', () => {
-  taskInput.style.border = '';
-  document.getElementById('hidden').style.visibility = 'hidden';
+clearAll.addEventListener('click', () => {
+  localStorage.clear('tasks');
+  taskArea.innerHTML = '';
+  list = [];
 });
