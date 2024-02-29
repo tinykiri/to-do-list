@@ -124,3 +124,28 @@ form {
   margin: 0;
   margin-top: 12px;
 }
+
+@media screen and (max-width: 730px) {
+  body {
+    background-size: 4000px;
+  }
+
+  #task_input {
+    width: 300px;
+    height: 60px;
+    font-size: 20px;
+  }
+
+  #btn {
+    margin-top: 10px;
+    width: 310px;
+    height: 60px;
+    font-size: 16px;
+  }
+
+  #clearAll {
+    width: 310px;
+    height: 60px;
+    font-size: 16px;
+  }
+}
